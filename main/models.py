@@ -1,4 +1,5 @@
 import uuid
+from django.contrib.auth.models import User
 from django.db import models
 
 class News(models.Model):
@@ -9,8 +10,8 @@ class News(models.Model):
         ('match', 'Match'),
         ('rumor', 'Rumor'),
         ('analysis', 'Analysis'),
-    ]
-    
+    ] 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True) # tambahkan ini
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
     content = models.TextField()
